@@ -35,11 +35,20 @@ export class DataComponent{
                                    ]
                               )
     });
+
+    this.form.setValue(this.user);
   }
 
 
   save() {
     console.log(this.form.value);
+    this.form.reset({
+      fullname:{
+        name:"",
+        lastname:""
+      },
+      email:""
+    });
   }
 
 }
