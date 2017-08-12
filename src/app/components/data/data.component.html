@@ -53,6 +53,25 @@
   </div>
 
 
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Pasatiempos</label>
+    <div class="col-md-8" formArrayName="hobbies">
+
+      <input
+        *ngFor="let hobbie of form.controls['hobbies'].controls; let i = index"
+        formControlName="{{i}}"
+        type="text"
+        class="form-control"
+      >
+    </div>
+    <button (click)="addHobbie()"
+      type="button"
+      class="btn btn-primary">
+      Nuevo
+    </button>
+  </div>
+
+
 
   <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
