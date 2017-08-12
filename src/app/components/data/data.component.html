@@ -1,17 +1,31 @@
 <h4>Formularios <small>data</small></h4>
 <hr>
-<form [formGroup]="form" (ngSubmit)="save()" novalidate="novalidate">
+<form [formGroup]="form" (ngSubmit)="save()">
 
-  <div>
-
-    <div class="form-group row">
+  <div formGroupName="fullname">
+<!-- " -->
+    <div class="form-group row" [ngClass]="{ 'has-danger': !form.get('fullname.name').valid && form.get('fullname.name').touched }" >
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
 
         <input class="form-control"
                type="text"
-               placeholder="Nombre">
+               placeholder="Nombre"
+               formControlName="name">
+       <div
+         class="form-control-feedback"
+         *ngIf="form.get('fullname.name').errors?.required"
+         >
+         Este campo es requerido
+       </div>
+       <div
+         class="form-control-feedback"
+         *ngIf="form.get('fullname.name').errors?.minlength"
+         >
+         Minimo 3 caracteres
+       </div>
       </div>
+
     </div>
 
     <div class="form-group row">
@@ -20,7 +34,8 @@
 
         <input class="form-control"
                type="text"
-               placeholder="Apellido">
+               placeholder="Apellido"
+               formControlName="lastname">
       </div>
     </div>
 
@@ -32,7 +47,8 @@
 
       <input class="form-control"
              type="email"
-             placeholder="Correo electrónico">
+             placeholder="Correo electrónico"
+             formControlName="email">
     </div>
   </div>
 
@@ -46,5 +62,7 @@
       </button>
     </div>
   </div>
+
+  {{ form.valid }}
 
 </form>
